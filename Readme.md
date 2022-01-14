@@ -17,8 +17,8 @@ Cortex requires only two configuration file to deploy the application. Cortex cr
 
 In this exercise, transformers sentiment classifier application is deployed using Cortex two different APIs.
 
-1. [Realtime API](realtime/realtime.md)
-2. [Async API](async/async.md)
+1. [Realtime API](realtime/Readme.md)
+2. [Async API](async/Readme.md)
 
 Cortex is super :rocket: With just 2 commands, 2 configuration files and right amount of patience, the application is deployed seamlessly without modifications to the application.
 

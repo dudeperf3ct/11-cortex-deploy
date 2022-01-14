@@ -1,6 +1,6 @@
-Fastapi
-uvicorn
-starlette
+Fastapi==0.71.0
+uvicorn==0.17.0
+starlette==0.17.1
 -f https://download.pytorch.org/whl/lts/1.8/torch_lts.html
 torch==1.8.2+cpu
 transformers==4.13.0
