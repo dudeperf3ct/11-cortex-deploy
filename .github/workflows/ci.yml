@@ -27,3 +27,21 @@ jobs:
       - name: Test with pytest
         run: |
           pytest --cov
+
+  # lint with trunk actions
+  linter:
+    name: "Run linting using trunk github actions"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Cache Linters/Formatters
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/trunk
+          key: trunk-${{ runner.os }}
+
+      - name: Trunk Check
+        uses: trunk-io/trunk-action@v0.4.0-beta

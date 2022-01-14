@@ -8,9 +8,12 @@
 
 Cortex supports 4 different ways to build scalable API :
 
-1.[Realtime](https://docs.cortex.dev/workloads/realtime/example): create APIs that respond to requests in real-time. 
-2.[Async](https://docs.cortex.dev/workloads/async/example): create APIs that respond to requests asynchronously. 
-3.[Batch](https://docs.cortex.dev/workloads/batch/example): create APIs that run distributed batch jobs. 
+1.[Realtime](https://docs.cortex.dev/workloads/realtime/example): create APIs that respond to requests in real-time.
+
+2.[Async](https://docs.cortex.dev/workloads/async/example): create APIs that respond to requests asynchronously.
+
+3.[Batch](https://docs.cortex.dev/workloads/batch/example): create APIs that run distributed batch jobs.
+
 4.[Task](https://docs.cortex.dev/workloads/task/example): create APIs that run jobs on-demand.
 
 Cortex requires only two configuration file to deploy the application. Cortex creates a cluster from `cluster.yaml` file including a s3 bucket and cloudwatch log group. The Cortex cluster runs on an EKS (Kubernetes) cluster in a dedicated VPC on your AWS account. Each individual API contains `cortex.yaml` to deploy different types of workloads.
