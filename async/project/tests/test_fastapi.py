@@ -2,15 +2,9 @@ import json
 from http import HTTPStatus
 
 from fastapi.testclient import TestClient
-
 from project.app import app
 
 client = TestClient(app)
-
-
-def test_root():
-    response = client.get("/")
-    assert response.status_code == HTTPStatus.OK
 
 
 def test_healthcheck_endpoint():
@@ -19,9 +13,9 @@ def test_healthcheck_endpoint():
 
 
 # TODO: not working as expected
-def test_classify_endpoint():
+def test_root_endpoint():
     response = client.post(
-        "/classify", data=json.dumps({"input_text": "a"})
+        "/", data=json.dumps({"input_text": "a"})
     )  # min length should be 2
     assert response.status_code == 422  # Unprocessable Entity
     # response = client.post("/classify", data=json.dumps({"input_text": "this is positive sentence"}))  # not working as expected

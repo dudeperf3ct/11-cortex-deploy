@@ -1,0 +1,20 @@
+- name: sentiment # name of the API (required)
+  kind: AsyncAPI # must be "AsyncAPI" for async APIs (required)
+  pod: # pod configuration (required)
+    port: 8000 # port to which requests will be sent (default: 8080; exported as $CORTEX_PORT)
+    max_concurrency: 1 # maximum number of requests that will be concurrently sent into the container (default: 1)
+    containers: # configurations for the containers to run (at least one constainer must be provided)
+      - name: sentiment-api # name of the container (required)
+        image: dudeperf3ct7/sentiment:0.2 # docker image to use for the container (required)
+        env: # dictionary of environment variables to set in the container (optional)
+          ENABLE_METRICS: "true"
+          METRICS_NAMESPACE: fastapi
+          METRICS_SUBSYSTEM: model
+        readiness_probe: # periodic probe of container readiness; traffic will not be sent into the pod unless all containers' readiness probes are succeeding (optional)
+          http_get: # specifies an http endpoint which must respond with status code 200 (only one of http_get, tcp_socket, and exec may be specified)
+            port: 8000 # the port to access on the container (required)
+            path: /healthcheck # the path to access on the HTTP server (default: /)
+        liveness_probe: # periodic probe of container liveness; container will be restarted if the probe fails (optional)
+          http_get: # specifies an http endpoint which must respond with status code 200 (only one of http_get, tcp_socket, and exec may be specified)
+            port: 8000 # the port to access on the container (required)
+            path: /healthcheck # the path to access on the HTTP server (default: /)

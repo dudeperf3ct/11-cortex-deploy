@@ -1,6 +1,5 @@
 import pytest
 import torch
-
 from project.sentiment.model import SentimentBertModel
 
 

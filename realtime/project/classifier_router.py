@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Query
-from starlette.responses import JSONResponse
-
 from project.sentiment.model import SentimentBertModel
+from starlette.responses import JSONResponse
 
 router = APIRouter()
 

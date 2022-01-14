@@ -110,6 +110,8 @@ curl -X 'POST' \
   -d ''
 ```
 
+Realtime API [handles and routes requests](https://docs.cortex.dev/workloads/realtime/containers#handling-requests) to subpaths. Subpaths are supported; for example, if your API is named hello-world, a request to `<load_balancer_url>/hello-world` will be routed to the root (`/`) of your web server, and a request to `<load_balancer_url>/hello-world/subpatch` will be routed to `/subpath` on your web server.
+
 Run tests using pytest (Replace line number 5 and 7 in `project/Dockerfile` with `requirements-test.txt` instead of `requirements.txt`)
 
 ```bash
@@ -203,7 +205,8 @@ Pre-requisities
   or
 
   ```bash
-  python sync_requests.py
+  python3 sync_requests.py
+  python3 async_requests.py
   ```
 
 - Delete the API
@@ -219,3 +222,7 @@ Pre-requisities
   ```bash
   cortex cluster down
   ```
+
+Additional Configuration
+
+It is also possible to connect cortex deployment with [kubectl](https://docs.cortex.dev/clusters/advanced/kubectl#update-kubeconfig) to access pods, deployment and services related to the application.

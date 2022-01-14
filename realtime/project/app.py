@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-
 from project import classifier_router
 from project.monitoring import instrumentator
 
