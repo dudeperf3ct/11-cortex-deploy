@@ -195,6 +195,7 @@ Pre-requisities
     -H 'accept: application/json' \
     -d ''
   ```
+
   or
 
   ```bash

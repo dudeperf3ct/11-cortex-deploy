@@ -27,21 +27,3 @@ jobs:
       - name: Test with pytest
         run: |
           pytest --cov
-
-  # lint with trunk actions
-  linter:
-    name: "Run linting using trunk github actions"
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      # Caching is only needed when using ephemeral CI runners
-      - name: Cache Linters/Formatters
-        uses: actions/cache@v2
-        with:
-          label: ${{ runner.os }}
-
-      - name: Trunk Check
-        uses: trunk-io/trunk-action@v0.4.0-beta
