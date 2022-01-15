@@ -102,12 +102,15 @@ docker run -p 8000:8000 -e ENABLE_METRICS=true sentiment
 
 ```bash
 curl -X 'POST' \
-  'http://0.0.0.0:8000/?input_text=i%20like%20you' \
+  'http://0.0.0.0:8000/' \
   -H 'accept: application/json' \
-  -d ''
+  -H 'Content-Type: application/json' \
+  -d '{
+  "input_text": "i like you"
+}'
 ```
 
-AsyncAPI [handles requests](https://docs.cortex.dev/workloads/async/containers#handling-requests) in different way than RealtimeAPI. Requests will be sent to only your web server via HTTP POST requests to the root path (`/`) as they are pulled off of the queue.
+AsyncAPI [handles requests](https://docs.cortex.dev/workloads/async/containers#handling-requests) in different way than RealtimeAPI. Requests will be sent to only your web server via HTTP POST requests to the root path (`/`) as they are pulled off of the queue. Also, Async API does not currently support query params and data needs to be passed in the body.
 
 Run tests using pytest (Replace line number 5 and 7 in `project/Dockerfile` with `requirements-test.txt` instead of `requirements.txt`)
 
@@ -193,9 +196,10 @@ Pre-requisities
 
   ```bash
   curl -i -X POST \
-    'http://a1d29dbca812e47fbaa3efb9e54e06e9-5e4a92689ebef306.elb.us-east-1.amazonaws.com/sentiment?input_text=i%20like%20you' \
+    '<endpoint>' \
     -H 'accept: application/json' \
-    -d ''
+    -H 'Content-Type: application/json' \
+    -d '{"input_text": "i like you"}'
   ```
 
   This will give a an output with `{"id": "<id>"}`.
@@ -204,7 +208,7 @@ Pre-requisities
   curl -i '<endpoint>/id'
   ```
 
-  Check the [statuses](https://docs.cortex.dev/workloads/async/statuses#request-statuses) that is returned by this request.
+  Check the [statuses](https://docs.cortex.dev/workloads/async/statuses#request-statuses) that is returned by this request. Many of the requests will be "in-queue".
 
   or
 

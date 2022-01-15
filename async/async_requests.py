@@ -6,10 +6,12 @@ import aiohttp
 
 
 async def main():
-    endpoint = "<endpoint>?input_text=ilikeyou"
+    endpoint = "http://a1d29dbca812e47fbaa3efb9e54e06e9-5e4a92689ebef306.elb.us-east-1.amazonaws.com/sentiment"
     async with aiohttp.ClientSession() as session:
-        for i in range(1, 10):
-            async with session.post(endpoint) as resp:
+        for _ in range(1, 10):
+            async with session.post(
+                endpoint, json={"input_text": "i like you"}
+            ) as resp:
                 results = await resp.json()
                 pprint.pprint(results)
 

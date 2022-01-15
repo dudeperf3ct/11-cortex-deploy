@@ -1,4 +1,4 @@
-# This workflow will run tests using pytest and perform linting using trunk.io linter
+# This workflow will perform linting using trunk.io linter
 name: Continuous Integration Workflow
 
 on:
@@ -7,27 +7,6 @@ on:
   pull_request:
 
 jobs:
-  # run tests to make sure everything is passes
-  tests:
-    name: "Run tests"
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8
-
-      - name: Install dependencies
-        run: pip install -r realtime/requirements-tests.txt
-
-      - name: Test with pytest
-        run: |
-          pytest --cov
-
   # lint with trunk actions
   linter:
     name: "Run linting using trunk github actions"
